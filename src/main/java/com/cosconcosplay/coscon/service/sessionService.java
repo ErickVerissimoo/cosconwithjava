@@ -1,9 +1,6 @@
 package com.cosconcosplay.coscon.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.session.Session;
-import org.springframework.session.UuidSessionIdGenerator;
-import org.springframework.session.jdbc.JdbcIndexedSessionRepository;
 import org.springframework.stereotype.Service;
 
 import com.cosconcosplay.coscon.repository.userRepository;

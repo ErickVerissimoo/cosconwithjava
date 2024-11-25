@@ -2,8 +2,6 @@ package com.cosconcosplay.coscon.model;
 
 import java.util.List;
 
-import org.hibernate.annotations.NaturalId;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;

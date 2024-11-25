@@ -1,12 +1,9 @@
 package com.cosconcosplay.coscon.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
 import com.cosconcosplay.coscon.model.Post;
 import com.cosconcosplay.coscon.model.User;
 import com.cosconcosplay.coscon.service.postService;
-import com.cosconcosplay.coscon.service.sessionService;
 import com.cosconcosplay.coscon.service.userService;
 import com.cosconcosplay.coscon.utils.Authenticated;
 
@@ -17,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -25,15 +21,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -41,7 +34,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class mainController {
     @Autowired private userService service; 
     @Autowired private postService postserv;
-    @Autowired private sessionService sessao;
 @PostMapping(value = "cadastro", consumes = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<String> cadastro(@Validated @RequestBody userDTO user) {
 
@@ -77,7 +69,7 @@ public List<Post> getAll() {
 public String comenta(@RequestBody commentDTO comentario) {
     
     
-    return entity;
+    return null;
 }
 
 public record commentDTO(String comentario, Integer postID){}
