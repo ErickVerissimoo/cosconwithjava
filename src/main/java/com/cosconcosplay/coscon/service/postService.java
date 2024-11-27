@@ -3,12 +3,13 @@ package com.cosconcosplay.coscon.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cosconcosplay.coscon.model.Post;
 import com.cosconcosplay.coscon.repository.postRepository;
 
 import jakarta.persistence.EntityNotFoundException;
-
+@Service
 public class postService implements GenericService<Post, Integer> {
     @Autowired private postRepository repository;
     @Override

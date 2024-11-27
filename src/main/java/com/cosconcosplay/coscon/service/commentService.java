@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.cosconcosplay.coscon.model.Comment;
 import com.cosconcosplay.coscon.repository.commentRepository;
-import com.cosconcosplay.coscon.repository.userRepository;
 
 @Service
 public class commentService {

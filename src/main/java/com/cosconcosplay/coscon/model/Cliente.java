@@ -2,14 +2,13 @@ package com.cosconcosplay.coscon.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -17,7 +16,8 @@ import lombok.Data;
 @Entity
 @Builder
 @Data
-public class User {
+@Table(name = "usuarios")
+public class Cliente {
 @Id
 @GeneratedValue(strategy =GenerationType.IDENTITY)
 private Integer id;
@@ -30,6 +30,6 @@ private String username;
 private String password;
 @OneToMany(mappedBy = "usuario")
 private List<Post> postagens;
-@JsonIgnore
-private String session_id;
+
+private String sessionId;
 }

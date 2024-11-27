@@ -2,7 +2,7 @@ package com.cosconcosplay.coscon.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.cosconcosplay.coscon.model.Post;
-import com.cosconcosplay.coscon.model.User;
+import com.cosconcosplay.coscon.model.Cliente;
 import com.cosconcosplay.coscon.service.postService;
 import com.cosconcosplay.coscon.service.userService;
 import com.cosconcosplay.coscon.utils.Authenticated;
@@ -37,7 +37,7 @@ public class mainController {
 @PostMapping(value = "cadastro", consumes = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<String> cadastro(@Validated @RequestBody userDTO user) {
 
-    service.add(User.builder().email(user.email).password(user.password).username(user.username).build());
+    service.add(Cliente.builder().email(user.email).password(user.password).username(user.username).build());
 return ResponseEntity.ok("Usuario cadastrado");
 }
 @PostMapping(value = "login")

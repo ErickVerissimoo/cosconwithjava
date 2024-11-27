@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/> 
     </parent>
     <groupId>com.cosconcosplay</groupId>
     <artifactId>coscon</artifactId>
@@ -43,13 +43,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-core</artifactId>
-        </dependency>
+      
     <dependency>
     <groupId>org.springframework.session</groupId>
     <artifactId>spring-session-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jdbc</artifactId>
     </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,20 +60,17 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
 
-        <!-- Dependência do Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version> <!-- Use a versão mais recente -->
-            <scope>provided</scope> <!-- Mantém o escopo como provided -->
+            <version>1.18.34</version> 
+            <scope>provided</scope> 
         </dependency>
 
-        <!-- Dependências para testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -85,7 +83,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Validação -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
@@ -94,27 +91,22 @@
 
     </dependencies>
 
-    <!-- Configuração do Build -->
     <build>
         <plugins>
 
-            <!-- Plugin do Maven Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version><!-- Verifique se está usando uma versão compatível -->
+                <version>3.8.1</version>
                 <configuration>
-                    <!-- Usa a versão do Java definida nas propriedades -->
                     <source>${java.version}</source> 
                     <target>${java.version}</target>
 
-                    <!-- Configuração para processar anotações -->
                     <annotationProcessorPaths>
-                        <!-- Caminho para o Lombok -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version><!-- Use a mesma versão definida na dependência -->
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
 
@@ -124,7 +116,7 @@
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId><!-- Mantenha a configuração padrão -->
+                <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
             <layers>
             <enabled>true</enabled>

@@ -26,11 +26,12 @@ private String title;
 @Nullable
 private String body;
 @Nullable
+
 @Lob
 private byte[] imagem;
 @ManyToOne
 @JoinColumn(name = "usuario_id")
-private User usuario;
+private Cliente usuario;
 @OneToMany(mappedBy = "postagem")
 private List<Comment> comentarios;
 }

@@ -16,7 +16,7 @@ public class sessionService {
     {
         if(userRepo.existsByEmail(email)){
             var entity = userRepo.findByEmail(email);
-            entity.setSession_id(sessao.getId());
+            entity.setSessionId(sessao.getId());
             userRepo.saveAndFlush(entity);
         }
      else{

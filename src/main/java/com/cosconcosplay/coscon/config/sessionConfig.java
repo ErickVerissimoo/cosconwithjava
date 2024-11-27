@@ -5,4 +5,6 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 
 @Configuration
 @EnableJdbcHttpSession(maxInactiveIntervalInSeconds = 50*50*50)
-public class sessionConfig{}
+public class sessionConfig{
+
+}
