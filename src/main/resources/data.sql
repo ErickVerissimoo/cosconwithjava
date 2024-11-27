@@ -1,23 +1,24 @@
--- Active: 1732662534023@@127.0.0.1@5432@coscon@public
-CREATE TABLE SPRING_SESSION (
-	PRIMARY_ID CHAR(36) NOT NULL,
-	SESSION_ID CHAR(36) NOT NULL,
-	CREATION_TIME BIGINT NOT NULL,
-	LAST_ACCESS_TIME BIGINT NOT NULL,
-	MAX_INACTIVE_INTERVAL INT NOT NULL,
-	EXPIRY_TIME BIGINT NOT NULL,
-	PRINCIPAL_NAME VARCHAR(100),
-	CONSTRAINT SPRING_SESSION_PK PRIMARY KEY (PRIMARY_ID)
+create table if not exists spring_session (
+    primary_id char(36) not null,
+    session_id char(36) not null,
+    creation_time bigint not null,
+    last_access_time bigint not null,
+    max_inactive_interval int not null,
+    expiry_time bigint not null,
+    principal_name varchar(100),
+    constraint spring_session_pk primary key (primary_id)
 );
 
-CREATE UNIQUE INDEX SPRING_SESSION_IX1 ON SPRING_SESSION (SESSION_ID);
-CREATE INDEX SPRING_SESSION_IX2 ON SPRING_SESSION (EXPIRY_TIME);
-CREATE INDEX SPRING_SESSION_IX3 ON SPRING_SESSION (PRINCIPAL_NAME);
+create unique index if not exists spring_session_ix1 on spring_session (session_id);
 
-CREATE TABLE SPRING_SESSION_ATTRIBUTES (
-	SESSION_PRIMARY_ID CHAR(36) NOT NULL,
-	ATTRIBUTE_NAME VARCHAR(200) NOT NULL,
-	ATTRIBUTE_BYTES BYTEA NOT NULL,
-	CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
-	CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
+create index if not exists spring_session_ix2 on spring_session (expiry_time);
+
+create index if not exists spring_session_ix3 on spring_session (principal_name);
+
+create table if not exists spring_session_attributes (
+    session_primary_id char(36) not null,
+    attribute_name varchar(200) not null,
+    attribute_bytes bytea not null,
+    constraint spring_session_attributes_pk primary key (session_primary_id, attribute_name),
+    constraint spring_session_attributes_fk foreign key (session_primary_id) references spring_session (primary_id) on delete cascade
 );

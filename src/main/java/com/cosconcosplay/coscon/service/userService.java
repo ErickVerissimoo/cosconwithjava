@@ -22,7 +22,7 @@ public void add(Cliente entity) {
 if(repository.existsByEmail(entity.getEmail())){
 throw new EntityExistsException("A entidade já existe");
 }
-repository.save(entity);
+repository.saveAndFlush(entity);
 }
 
 @Override

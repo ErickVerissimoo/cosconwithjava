@@ -16,6 +16,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.time.chrono.JapaneseChronology;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public ResponseEntity<String> login(@RequestBody userDTO entity, HttpServletRequ
 @Authenticated
 @PostMapping("postar")
 public ResponseEntity<String> postMethodName(@Validated @ModelAttribute postDTO post) {
-    postserv.add(Post.builder().body(post.body).title(post.title).imagem(post.imagem).build());
+    postserv.add(Post.builder().body(post.body).title(post.title).imagens(post.imagem).build());
     
     return ResponseEntity.status(HttpStatus.CREATED).body("Postado!");
 }
@@ -67,7 +68,6 @@ public List<Post> getAll() {
 @Authenticated
 @PostMapping("comentar")
 public String comenta(@RequestBody commentDTO comentario) {
-    
     
     return null;
 }
@@ -81,6 +81,6 @@ public record userDTO(
  @Email(message = "Email inválido") String email){}
  public record postDTO (@NotBlank String title,
  @NotBlank String body,
-  @Nullable byte[] imagem){};
+  @Nullable byte[][] imagem){};
 }
 

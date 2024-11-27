@@ -3,6 +3,7 @@ package com.cosconcosplay.coscon.model;
 import java.util.List;
 
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,9 +27,8 @@ private String title;
 @Nullable
 private String body;
 @Nullable
-
-@Lob
-private byte[] imagem;
+@Column(columnDefinition = "bytea[]")
+private byte[][] imagens;
 @ManyToOne
 @JoinColumn(name = "usuario_id")
 private Cliente usuario;

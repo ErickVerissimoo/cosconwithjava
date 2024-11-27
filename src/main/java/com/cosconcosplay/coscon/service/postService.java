@@ -27,6 +27,7 @@ public class postService implements GenericService<Post, Integer> {
     @Override
     public List<Post> getAll() {
         return repository.findAll();
+
     }
 
     @Override

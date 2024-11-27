@@ -11,7 +11,8 @@ public class commentService {
 @Autowired private commentRepository repository;
 
 public void comentar(Comment comentario){
-repository.save(comentario);
+    
+repository.saveAndFlush(comentario);
 }
 
 }
