@@ -2,7 +2,9 @@ package com.cosconcosplay.coscon.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.cosconcosplay.coscon.model.Post;
-import com.cosconcosplay.coscon.model.Cliente;
+import com.cosconcosplay.coscon.service.commentService;
+import com.cosconcosplay.coscon.service.commentService.commentDTO;
+import com.cosconcosplay.coscon.service.userService.usuarioDTO;
 import com.cosconcosplay.coscon.service.postService;
 import com.cosconcosplay.coscon.service.userService;
 import com.cosconcosplay.coscon.utils.Authenticated;
@@ -12,11 +14,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-
-import java.time.chrono.JapaneseChronology;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,21 +28,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 @RestController
 public class mainController {
     @Autowired private userService service; 
     @Autowired private postService postserv;
+    @Autowired private commentService coment;
 @PostMapping(value = "cadastro", consumes = MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<String> cadastro(@Validated @RequestBody userDTO user) {
+public ResponseEntity<String> cadastro(@Validated @RequestBody usuarioDTO user) {
 
-    service.add(Cliente.builder().email(user.email).password(user.password).username(user.username).build());
+    service.add(user.toEntity());
 return ResponseEntity.ok("Usuario cadastrado");
 }
 @PostMapping(value = "login")
-public ResponseEntity<String> login(@RequestBody userDTO entity, HttpServletRequest req, HttpServletResponse response) {
+public ResponseEntity<String> login(@RequestBody usuarioDTO entity, HttpServletRequest req, HttpServletResponse response) {
     HttpSession sessioe = req.getSession(true);
-    service.login(entity.email);
+    service.login(entity.toEntity());
     Cookie cook = new Cookie("session_id", sessioe.getId());
     cook.setHttpOnly(true);
     response.addCookie(cook);
@@ -67,18 +65,14 @@ public List<Post> getAll() {
 }
 @Authenticated
 @PostMapping("comentar")
-public String comenta(@RequestBody commentDTO comentario) {
-    
+public ResponseEntity<String> comenta(@RequestBody commentDTO comentario) {
+    coment.comentar(coment.toEntity(comentario));
     return null;
 }
 
-public record commentDTO(String comentario, Integer postID){}
 
 
-public record userDTO(
-    @NotBlank String username,
- @Size(min = 9, message = "A senha deve conter no minimo 9 letras") String password,
- @Email(message = "Email inválido") String email){}
+
  public record postDTO (@NotBlank String title,
  @NotBlank String body,
   @Nullable byte[][] imagem){};

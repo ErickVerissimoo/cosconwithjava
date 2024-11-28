@@ -1,12 +1,14 @@
 package com.cosconcosplay.coscon.model;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
-
 @Entity
 @Data
 public class Reply {
@@ -16,5 +18,11 @@ public class Reply {
     @ManyToOne
     @JoinColumn(name = "comentario_id")
     private Comment comentario;
+    @ManyToOne
+    @JoinColumn(name = "primaryReply_id")
+    private Reply primaryReply;
     private String resposta;
+    @OneToMany(mappedBy =  "primaryReply", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reply> children;
+    
 }

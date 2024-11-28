@@ -3,6 +3,7 @@ package com.cosconcosplay.coscon.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cosconcosplay.coscon.model.Cliente;
 import com.cosconcosplay.coscon.repository.userRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -12,10 +13,10 @@ import jakarta.servlet.http.HttpSession;
 public class sessionService {
     @Autowired private userRepository userRepo;
     @Autowired private HttpSession sessao;
-    public void associateAndLogin(String email) throws EntityNotFoundException
+    public void associateAndLogin(Cliente user) throws EntityNotFoundException
     {
-        if(userRepo.existsByEmail(email)){
-            var entity = userRepo.findByEmail(email);
+        if(userRepo.existsByEmail(user.getEmail()) && userRepo.existsById(user.getId())){
+            var entity = userRepo.getReferenceById(user.getId());
             entity.setSessionId(sessao.getId());
             userRepo.saveAndFlush(entity);
         }

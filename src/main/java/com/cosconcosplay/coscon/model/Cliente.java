@@ -2,6 +2,7 @@ package com.cosconcosplay.coscon.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ private String email;
 private String username;
 @NotNull
 private String password;
-@OneToMany(mappedBy = "usuario")
+@OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
 private List<Post> postagens;
 
 private String sessionId;
