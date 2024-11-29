@@ -1,6 +1,7 @@
 package com.cosconcosplay.coscon.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,10 @@ public List<Cliente> getAll() {
 return repository.findAll();    
 
 }
+public Integer findID(String username){
+return Optional.of(repository.findIdByUsername(username)).orElseThrow(() -> new EntityNotFoundException("Entidade não existe") );
+}
+
 
 @Override
 @Transactional

@@ -2,8 +2,8 @@ package com.cosconcosplay.coscon.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.cosconcosplay.coscon.model.Post;
+import com.cosconcosplay.coscon.model.dto.CommentDTO;
 import com.cosconcosplay.coscon.service.commentService;
-import com.cosconcosplay.coscon.service.commentService.commentDTO;
 import com.cosconcosplay.coscon.service.userService.usuarioDTO;
 import com.cosconcosplay.coscon.service.postService;
 import com.cosconcosplay.coscon.service.userService;
@@ -45,8 +45,9 @@ public ResponseEntity<String> login(@RequestBody usuarioDTO entity, HttpServletR
     service.login(entity.toEntity());
     Cookie cook = new Cookie("session_id", sessioe.getId());
     cook.setHttpOnly(true);
+    Cookie userID = new Cookie("userid",service.findID(entity.username()).toString());
     response.addCookie(cook);
-
+    response.addCookie(userID);
     return ResponseEntity.status(HttpStatus.ACCEPTED).body("Usuário autenticado");
 }
 
@@ -54,21 +55,23 @@ public ResponseEntity<String> login(@RequestBody usuarioDTO entity, HttpServletR
 @Authenticated
 @PostMapping("postar")
 public ResponseEntity<String> postMethodName(@Validated @ModelAttribute postDTO post) {
-    postserv.add(Post.builder().body(post.body).title(post.title).imagens(post.imagem).build());
+    postserv.add(post.);
     
     return ResponseEntity.status(HttpStatus.CREATED).body("Postado!");
 }
 
-@GetMapping(value = {"feed"})
+@GetMapping(value = "feed")
 public List<Post> getAll() {
     return postserv.getAll();
 }
-@Authenticated
+
 @PostMapping("comentar")
-public ResponseEntity<String> comenta(@RequestBody commentDTO comentario) {
-    coment.comentar(coment.toEntity(comentario));
+public String postMethodName(@Validated @RequestBody CommentDTO dto) {
+    
+    
     return null;
 }
+
 
 
 

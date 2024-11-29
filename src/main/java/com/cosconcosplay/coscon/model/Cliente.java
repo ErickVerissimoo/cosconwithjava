@@ -31,6 +31,5 @@ private String username;
 private String password;
 @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
 private List<Post> postagens;
-
 private String sessionId;
 }
