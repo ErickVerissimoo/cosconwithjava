@@ -65,6 +65,7 @@ repository.deleteById(id);
 }    catch(EntityNotFoundException ex){
 System.out.println(ex.getMessage());
 }}
+
 public void login(Cliente usuario){
 try{
     service.associateAndLogin(usuario);

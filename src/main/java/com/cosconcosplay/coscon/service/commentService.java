@@ -13,15 +13,12 @@ import jakarta.validation.Valid;
 @Service
 public class commentService {
 @Autowired private commentRepository repository;
-@Autowired private userRepository service;
-@Autowired private postRepository repo;
 public void comentar( @Valid Comment comentario){
     
 repository.saveAndFlush(comentario);
 }
-
-public record commentDTO(String comentario ){
-
+public void apagarComentario(@Valid Comment coment){
+repository.deleteById(coment.getId());
 }
 
 }

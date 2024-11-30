@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ import lombok.Data;
 @Entity
 @Builder
 @Data
+@Table(name = "comentario")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

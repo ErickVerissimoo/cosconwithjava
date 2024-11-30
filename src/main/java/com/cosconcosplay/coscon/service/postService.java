@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cosconcosplay.coscon.model.Cliente;
 import com.cosconcosplay.coscon.model.Post;
 import com.cosconcosplay.coscon.repository.postRepository;
 
@@ -48,11 +47,8 @@ public class postService implements GenericService<Post, Integer> {
         
         repository.deleteById(id);
     }
-    public record postDTO(String titulo, String body, Integer userId, byte[][] imagens, Cliente cliente){
-        public Post toEntity(){
-            return Post.builder().body(this.body).title(this.titulo).imagens(this.imagens).usuario(this.cliente).build();
-        }
+   
 
 
     }
-}
+

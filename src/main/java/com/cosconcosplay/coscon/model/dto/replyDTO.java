@@ -8,12 +8,15 @@ import com.cosconcosplay.coscon.model.Reply;
 import com.cosconcosplay.coscon.repository.replyRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class replyDTO {
-    CommentDTO coment;
-    List<replyDTO> respostas;
-    Integer primarydto;
-    Integer replyId;
-    Integer 
+    private CommentDTO coment;
+    private List<replyDTO> respostas;
+    private Integer primarydto;
+    private Integer replyId;
     @JsonIgnore
     @Autowired private replyRepository repository;
 public Reply toEntity(){

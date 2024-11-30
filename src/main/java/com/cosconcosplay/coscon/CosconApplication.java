@@ -9,6 +9,7 @@ public class CosconApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CosconApplication.class, args);
+	
 	}
 	
 }
